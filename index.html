@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SouyanDev | Birthday Countdown</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white p-4 sm:p-6 lg:p-8">
+
+    <main class="w-full max-w-3xl mx-auto flex flex-col gap-6 my-auto">
+
+        <section class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 sm:p-8 flex flex-col items-center text-center">
+            
+            <div id="status-badge" class="px-3 py-1 rounded-md bg-blue-950/80 border border-blue-800/80 text-blue-400 font-semibold text-xs font-semibold uppercase tracking-wider mb-6">
+                <i class="fa-solid fa-hourglass-half mr-1.5"></i> COUNTDOWN TO OCTOBER 4TH
+            </div>
+
+            <h2 id="countdown-title" class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
+                Time Remaining
+            </h2>
+            <p id="countdown-subtitle" class="text-zinc-400 text-sm max-w-md mb-8">
+                Counting down the days, hours, minutes, and seconds until SouyanDev's next birthday.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full mb-8">
+                <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-4 sm:p-5 flex flex-col items-center">
+                    <span id="timer-days" class="font-mono text-4xl sm:text-5xl font-bold text-blue-500 tracking-tight">00</span>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-widest text-zinc-400 mt-2">Days</span>
+                </div>
+
+                <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-4 sm:p-5 flex flex-col items-center">
+                    <span id="timer-hours" class="font-mono text-4xl sm:text-5xl font-bold text-blue-500 tracking-tight">00</span>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-widest text-zinc-400 mt-2">Hours</span>
+                </div>
+
+                <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-4 sm:p-5 flex flex-col items-center">
+                    <span id="timer-minutes" class="font-mono text-4xl sm:text-5xl font-bold text-blue-500 tracking-tight">00</span>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-widest text-zinc-400 mt-2">Minutes</span>
+                </div>
+
+                <div class="bg-zinc-950 border border-zinc-800 rounded-xl p-4 sm:p-5 flex flex-col items-center">
+                    <span id="timer-seconds" class="font-mono text-4xl sm:text-5xl font-bold text-blue-500 tracking-tight">00</span>
+                    <span class="text-[11px] font-mono font-semibold uppercase tracking-widest text-zinc-400 mt-2">Seconds</span>
+                </div>
+            </div>
+
+            <button id="confetti-btn" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-5 py-2.5 rounded-xl transition text-sm flex items-center justify-center gap-2 cursor-pointer border border-blue-500 active:scale-95">
+                <i class="fa-solid fa-cake-candles"></i>
+                <span>Confitti?</span>
+            </button>
+        </section>
+
+        <section class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 sm:p-7 flex flex-col gap-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-800 pb-5">
+                <div>
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        Hi, I'm SouyanDev 👋
+                    </h3>
+                    <p class="text-zinc-400 text-sm mt-1 leading-relaxed">
+                        Student & WebApp/MobileApp Developer from Indonesia. Currently learning web development and software engineering.
+                    </p>
+                </div>
+                <div class="px-3.5 py-1.5 rounded-xl bg-zinc-950 border border-zinc-800 text-xs font-mono text-zinc-300 shrink-0 self-start sm:self-auto">
+                    🎂 <span class="text-blue-400 font-semibold">Oct 4, 2011</span>
+                </div>
+            </div>
+
+            <div>
+                <span class="block text-xs font-mono text-zinc-400 uppercase tracking-wider mb-2.5 font-semibold">Tech Stack & Tools</span>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3 py-1 rounded-lg text-xs font-mono font-medium flex items-center gap-1.5">
+                        <i class="fa-brands fa-html5 text-blue-500"></i> HTML/CSS
+                    </span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3 py-1 rounded-lg text-xs font-mono font-medium flex items-center gap-1.5">
+                        <i class="fa-brands fa-react text-blue-500"></i> React
+                    </span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3 py-1 rounded-lg text-xs font-mono font-medium flex items-center gap-1.5">
+                        <i class="fa-brands fa-js text-blue-500"></i> JavaScript
+                    </span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3 py-1 rounded-lg text-xs font-mono font-medium flex items-center gap-1.5">
+                        <i class="fa-solid fa-code text-blue-500"></i> TypeScript
+                    </span>
+                    <span class="bg-zinc-950 border border-zinc-800 text-zinc-300 px-3 py-1 rounded-lg text-xs font-mono font-medium flex items-center gap-1.5">
+                        <i class="fa-brands fa-java text-blue-500"></i> Java
+                    </span>
+                </div>
+            </div>
+
+            <div class="pt-2 flex flex-wrap items-center gap-3">
+                <button id="copy-link-btn" class="bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 px-4 py-2 rounded-xl text-xs font-mono font-semibold transition flex items-center gap-2 cursor-pointer">
+                    <i class="fa-regular fa-copy text-blue-500"></i>
+                    <span id="copy-text">Copy Link</span>
+                </button>
+                <a href="https://github.com/SanityGuy" target="_blank" rel="noopener noreferrer" class="bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 px-4 py-2 rounded-xl text-xs font-mono font-semibold transition flex items-center gap-2">
+                    <i class="fa-brands fa-github text-blue-500"></i>
+                    <span>GitHub Profile</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="w-full text-center text-xs text-zinc-400 font-mono py-6 mt-6">
+        <p>SouyanDev • Indonesia 🇮🇩</p>
+    </footer>
+
+    <div id="toast" class="fixed bottom-5 right-5 bg-blue-600 text-white text-xs font-mono px-4 py-2.5 rounded-xl border border-blue-400 shadow-lg transition-all duration-300 opacity-0 pointer-events-none translate-y-2">
+        Link copied to clipboard!
+    </div>
+
+    <script>
+        function triggerConfetti() {
+            if (window.confetti) {
+                confetti({
+                    particleCount: 90,
+                    spread: 60,
+                    origin: { y: 0.6 },
+                    colors: ['#2563eb', '#3b82f6', '#60a5fa', '#ffffff', '#1d4ed8']
+                });
+            }
+        }
+
+        document.getElementById('confetti-btn').addEventListener('click', triggerConfetti);
+
+        const BIRTH_MONTH = 9; 
+        const BIRTH_DAY = 4;
+
+        const timerDays = document.getElementById('timer-days');
+        const timerHours = document.getElementById('timer-hours');
+        const timerMinutes = document.getElementById('timer-minutes');
+        const timerSeconds = document.getElementById('timer-seconds');
+        const statusBadge = document.getElementById('status-badge');
+        const countdownTitle = document.getElementById('countdown-title');
+        const countdownSubtitle = document.getElementById('countdown-subtitle');
+
+        let celebratedToday = false;
+
+        function getNextBirthday(now) {
+            let nextBday = new Date(now.getFullYear(), BIRTH_MONTH, BIRTH_DAY, 0, 0, 0);
+            if (now.getTime() > nextBday.getTime() && !(now.getDate() === BIRTH_DAY && now.getMonth() === BIRTH_MONTH)) {
+                nextBday.setFullYear(now.getFullYear() + 1);
+            }
+            return nextBday;
+        }
+
+        function updateTimer() {
+            const now = new Date();
+            
+            if (now.getMonth() === BIRTH_MONTH && now.getDate() === BIRTH_DAY) {
+                timerDays.textContent = "00";
+                timerHours.textContent = "00";
+                timerMinutes.textContent = "00";
+                timerSeconds.textContent = "00";
+                
+                statusBadge.innerHTML = '<i class="fa-solid fa-cake-candles mr-1.5"></i> IT\'S TODAY!';
+                statusBadge.className = 'px-3 py-1 rounded-md bg-blue-600 text-white font-mono text-xs font-semibold uppercase tracking-wider mb-6';
+                
+                countdownTitle.textContent = "Happy Birthday, SouyanDev! 🎉";
+                countdownSubtitle.textContent = "Wishing you an awesome day full of happiness, success, and great code!";
+
+                if (!celebratedToday) {
+                    celebratedToday = true;
+                    triggerConfetti();
+                }
+                return;
+            }
+
+            const target = getNextBirthday(now);
+            const diff = target.getTime() - now.getTime();
+
+            if (diff <= 0) {
+                timerDays.textContent = "00";
+                timerHours.textContent = "00";
+                timerMinutes.textContent = "00";
+                timerSeconds.textContent = "00";
+                countdownTitle.textContent = "Happy Birthday, SouyanDev! 🎉";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            timerDays.textContent = String(days).padStart(2, '0');
+            timerHours.textContent = String(hours).padStart(2, '0');
+            timerMinutes.textContent = String(minutes).padStart(2, '0');
+            timerSeconds.textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        const copyBtn = document.getElementById('copy-link-btn');
+        const copyText = document.getElementById('copy-text');
+        const toast = document.getElementById('toast');
+
+        copyBtn.addEventListener('click', () => {
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = window.location.href;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+
+            copyText.textContent = 'Copied!';
+            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+
+            setTimeout(() => {
+                copyText.textContent = 'Copy Link';
+                toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
